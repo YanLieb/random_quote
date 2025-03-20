@@ -1,0 +1,86 @@
+:root {
+  --light: #f1f1f1;
+  --dark: #1c1c1c;
+  --transition: all 500ms ease-in-out 100ms;
+}
+
+html {
+  font-size: 16px;
+  font-family: "Ubuntu Sans", sans-serif;
+  color: var(--dark);
+}
+
+body {
+  background: var(--light);
+  color: var(--dark);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: var(--transition);
+  height: 100vh;
+}
+
+body.dark-mode {
+  --light: #1c1c1c;
+  --dark: #f1f1f1;
+}
+
+.page-content {
+  max-width: 100%;
+  margin: auto;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.darkModeBtn {
+  position: absolute;
+  top: 3rem;
+  right: 3rem;
+}
+
+.quote-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.quote {
+  font-size: 32px;
+  font-weight: 300;
+  max-width: 800px;
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
+}
+
+.randomizeQuoteBtn {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0 auto;
+}
+
+button {
+  all: unset;
+  display: block;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-size: 16px;
+  background: var(--dark);
+  color: var(--light);
+  border: 2px solid var(--dark);
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+button:hover {
+  background: var(--light);
+  color: var(--dark);
+  box-shadow: 10px 10px 0px var(--dark);
+}
