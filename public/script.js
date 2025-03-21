@@ -61,19 +61,7 @@ function darkMode(btnElemClass) {
   });
 }
 
-function displayQuoteComponent() {
-  const pageContent = document.querySelector(".page-content");
-  pageContent.innerHTML = html`
-    <button type="button" class="darkModeBtn">Light Mode</button>
-    <div class="quote-container">
-      <p class="quote">Click on the button to get a random Perceval Quote</p>
-    </div>
-    <button class="randomizeQuoteBtn" type="submit">New quote</button>
-  `;
-}
-
 document.addEventListener("DOMContentLoaded", () => {
-  displayQuoteComponent();
   displayQuote(".quote");
   randomizeQuote(".randomizeQuoteBtn");
   darkMode(".darkModeBtn");
