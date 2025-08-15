@@ -5,7 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/server.js & node server/frontServer.js",
-    "dev": "nodemon server/server.js & nodemon server/frontServer.js"
+    "dev": "nodemon server/server.js & nodemon server/frontServer.js",
+    "build": "node server/generateQuotes.js"
   },
   "keywords": [],
   "author": "",
