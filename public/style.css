@@ -44,17 +44,28 @@ body.dark-mode {
 
 .quote-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .quote {
   font-size: 32px;
   font-weight: 300;
   max-width: 800px;
+  text-wrap: balance;
 
   @media (max-width: 768px) {
     font-size: 20px;
+  }
+}
+
+.character {
+  font-size: 24px;
+
+    @media (max-width: 768px) {
+    font-size: 16px;
   }
 }
 
@@ -82,5 +93,5 @@ button {
 button:hover {
   background: var(--light);
   color: var(--dark);
-  box-shadow: 10px 10px 0px var(--dark);
+  box-shadow: -3px 3px 0px var(--dark);
 }

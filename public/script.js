@@ -1,52 +1,46 @@
+import { quotes } from './quotes.js';
+
 async function getQuotes() {
   try {
-    const response = await fetch("http://localhost:2609/quotes");
-    const { quotes } = await response.json();
-
-    if (!quotes) throw new Error(`No quotes found in ${response.json()}`);
-
-    return quotes.perceval;
+    if (!quotes) throw new Error(`No quotes found`);
+    return quotes;
   } catch (err) {
     console.error("Error while loading quotes", err.message);
     return [];
   }
 }
 
-async function displayQuote(quoteElemClass) {
-  const quoteElem = document.querySelector(quoteElemClass);
+async function displayQuote() {
+  const quoteElem = document.querySelector(".quote");
+  const characterElem = document.querySelector(".character");
 
-  if (!quoteElem) throw new Error(`Missing ${quoteElemClass} element`);
+  if (!quoteElem) throw new Error(`Missing .quote element`);
+  if (!characterElem) throw new Error(`Missing .character element`);
 
   try {
     const quotes = await getQuotes();
-
-    if (!quotes || quotes.length === 0)
-      throw new Error(`No quotes found in ${quotes}`);
-
-    let lastQuote = null;
-    let randomQuote;
-    do {
-      randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-    } while (randomQuote === lastQuote);
-
-    lastQuote = randomQuote;
+    const characters = Object.keys(quotes);
+    const randomCharacter = characters[Math.floor(Math.random() * characters.length)];
+    const characterQuotes = quotes[randomCharacter];
+    const randomQuote = characterQuotes[Math.floor(Math.random() * characterQuotes.length)];
     quoteElem.innerHTML = randomQuote;
+    characterElem.innerHTML = randomCharacter;
   } catch (err) {
     console.error(err.message);
   }
 }
 
-function randomizeQuote(btnElemClass) {
-  const btn = document.querySelector(btnElemClass);
+function randomizeQuote() {
+  const btn = document.querySelector(".randomizeQuoteBtn");
 
   btn.addEventListener("click", (e) => {
     e.preventDefault();
-    displayQuote(".quote");
+    displayQuote();
   });
 }
 
-function darkMode(btnElemClass) {
-  const btn = document.querySelector(btnElemClass);
+function darkMode() {
+  const btn = document.querySelector(".darkModeBtn");
   let darkMode = localStorage.getItem("darkMode") === "true";
 
   btn.innerHTML = darkMode ? "Light Mode" : "Dark Mode";
@@ -62,7 +56,7 @@ function darkMode(btnElemClass) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  displayQuote(".quote");
-  randomizeQuote(".randomizeQuoteBtn");
-  darkMode(".darkModeBtn");
+  displayQuote();
+  randomizeQuote();
+  darkMode();
 });
